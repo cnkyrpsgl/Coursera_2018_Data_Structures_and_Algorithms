@@ -1,4 +1,4 @@
-# Coursera
+# [Coursera: Data Structures and Algorithms](https://www.coursera.org/specializations/data-structures-algorithms)
 My Python3 solutions to Course 1 & 2 of the specialization for reference. Later courses in the specialization will be added.
 
 ## [Course 1/Algorithmic Toolbox](/algorithmic%20toolbox/)
