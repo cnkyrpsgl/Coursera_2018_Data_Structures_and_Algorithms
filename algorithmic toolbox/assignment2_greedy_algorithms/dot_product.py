@@ -1,16 +1,12 @@
 #Uses python3
-
 import sys
-
 def max_dot_product(a, b):
-    #write your code here
     revenue = 0
     for i in range(len(a)):
         revenue += max(a) * max(b)
         a.pop(a.index(max(a)))
         b.pop(b.index(max(b)))
     return revenue
-
 if __name__ == '__main__':
     input = sys.stdin.read()
     data = list(map(int, input.split()))

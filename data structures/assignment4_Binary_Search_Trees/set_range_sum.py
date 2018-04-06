@@ -1,16 +1,10 @@
 # python3
-
 from sys import stdin
-
-
 # Splay tree implementation
-
 # Vertex of a splay tree
 class Vertex:
     def __init__(self, key, sum, left, right, parent):
         (self.key, self.sum, self.left, self.right, self.parent) = (key, sum, left, right, parent)
-
-
 def update(v):
     if v == None:
         return
@@ -19,8 +13,6 @@ def update(v):
         v.left.parent = v
     if v.right != None:
         v.right.parent = v
-
-
 def smallRotation(v):
     parent = v.parent
     if parent == None:
@@ -42,8 +34,6 @@ def smallRotation(v):
             grandparent.left = v
         else:
             grandparent.right = v
-
-
 def bigRotation(v):
     if v.parent.left == v and v.parent.parent.left == v.parent:
         # Zig-zig
@@ -57,8 +47,6 @@ def bigRotation(v):
         # Zig-zag
         smallRotation(v);
         smallRotation(v);
-
-
 # Makes splay of the given vertex and makes
 # it the new root.
 def splay(v):
@@ -70,8 +58,6 @@ def splay(v):
             break
         bigRotation(v)
     return v
-
-
 # Searches for the given key in the tree with the given root
 # and calls splay for the deepest visited node after that.
 # Returns pair of the result and the new root.
@@ -96,8 +82,6 @@ def find(root, key):
             v = v.left
     root = splay(last)
     return (next, root)
-
-
 def split(root, key):
     (result, root) = find(root, key)
     if result == None:
@@ -110,8 +94,6 @@ def split(root, key):
     update(left)
     update(right)
     return (left, right)
-
-
 def merge(left, right):
     if left == None:
         return right
@@ -123,11 +105,7 @@ def merge(left, right):
     right.left = left
     update(right)
     return right
-
-
 root = None
-
-
 def insert(x):
     global root
     (left, right) = split(root, x)
@@ -135,26 +113,17 @@ def insert(x):
     if right == None or right.key != x:
         new_vertex = Vertex(x, x, None, None, None)
     root = merge(merge(left, new_vertex), right)
-
-
 def erase(x):
     global root
-    if search(x) is None:
-        return
+    if search(x) is None: return
     root = splay(root)
     root = merge(root.left, root.right)
-    if root is not None:
-        root.parent = None
-
-
+    if root is not None: root.parent = None
 def search(x):
     global root
     result, root = find(root, x)
-    if result is None or result.key != x:
-        return None
+    if result is None or result.key != x: return None
     return result.key
-
-
 def sum(fr, to):
     global root
     (left, middle) = split(root, fr)
@@ -166,8 +135,6 @@ def sum(fr, to):
         ans = middle.sum
         root = merge(merge(left, middle), right)
     return ans
-
-
 MODULO = 1000000001
 n = int(stdin.readline())
 last_sum_result = 0

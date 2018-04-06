@@ -23,10 +23,8 @@ def compare(a,b):
     str2 = str(b) + str(a)
     return int(str2)-int(str1)
 def largest_number(a):
-    #write your code here
-    res = sorted(a, key=cmp_to_key(compare))
+    res = sorted(a, key = cmp_to_key(compare))
     return "".join(res)
-
 if __name__ == '__main__':
     input = sys.stdin.read()
     data = input.split()
